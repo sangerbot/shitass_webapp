@@ -1,0 +1,104 @@
+DROP DATABASE IF EXISTS
+
+CREATE DATABASE notes_app
+  CHARACTER SET utf8mb4
+  COLLATE utf8mb4_unicode_ci;
+
+USE notes_app;
+
+CREATE TABLE users (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE folders (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    user_id INT UNSIGNED NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (user_id) REFERENCES users(id)
+      ON DELETE CASCADE
+);
+
+CREATE TABLE notes (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    user_id INT UNSIGNED NOT NULL,
+    folder_id INT UNSIGNED NULL,
+    title VARCHAR(255) NOT NULL,
+    content TEXT NOT NULL,
+    is_pinned BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (user_id) REFERENCES users(id)
+      ON DELETE CASCADE,
+    FOREIGN KEY (folder_id) REFERENCES folders(id)
+      ON DELETE SET NULL
+);
+
+CREATE TABLE tags (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    user_id INT UNSIGNED NOT NULL,
+    name VARCHAR(50) NOT NULL,
+
+    UNIQUE (user_id, name),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+      ON DELETE CASCADE
+);
+
+CREATE TABLE note_tags (
+    note_id INT UNSIGNED NOT NULL,
+    tag_id INT UNSIGNED NOT NULL,
+
+    PRIMARY KEY (note_id, tag_id),
+    FOREIGN KEY (note_id) REFERENCES notes(id)
+      ON DELETE CASCADE,
+    FOREIGN KEY (tag_id) REFERENCES tags(id)
+      ON DELETE CASCADE
+);
+
+CREATE TABLE kanban_boards (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    user_id INT UNSIGNED NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (user_id) REFERENCES users(id)
+      ON DELETE CASCADE
+)ENGINE=InnoDB;
+
+CREATE TABLE kanban_columns (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    board_id INT UNSIGNED NOT NULL,
+    name VARCHAR(50) NOT NULL,
+    position INT NOT NULL,
+
+    FOREIGN KEY (board_id) REFERENCES kanban_boards(id)
+      ON DELETE CASCADE
+);
+
+CREATE TABLE tasks (
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    column_id INT UNSIGNED NOT NULL,
+    user_id INT UNSIGNED NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    due_date DATE NULL,
+    position INT NOT NULL,
+    is_completed BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (column_id) REFERENCES kanban_columns(id)
+      ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+      ON DELETE CASCADE
+);
+
+CREATE INDEX idx_notes_user ON notes(user_id);
+CREATE INDEX idx_tasks_user ON tasks(user_id);
+CREATE INDEX idx_tasks_column ON tasks(column_id);
