@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="window.css">
-    <link rel="stylesheet" href="notes.css">
+    <link rel="stylesheet" href="vcss files/window.css">
+    <link rel="stylesheet" href="css files/notes.css">
+    <link rel="stylesheet" href="css files/index.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notes</title>
 </head>
-<body>
     <body onload="startTime()">
         <div id="menu" style="padding: 20px;"></div>
-
         <script>
             fetch("taskbar.html")
             .then(response => response.text())
@@ -18,33 +17,24 @@
                 document.getElementById("menu").innerHTML = data;
             });
         </script>
+        <div class="login-box notesbox">
+            <div>
+                <h2>New Note - <input type="text title" placeholder="Enter note title..." style="color: white; width: 300px; border: none; background: transparent; font-size: inherit;"></h2>
+            </div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <div style="width: 320px;">
+                        <div>
+                            <div class="inputs">
+                                <textarea placeholder="Enter note content..." style="width: 100%; min-height: 57px; max-height: 400px; resize: vertical; font-family: inherit;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button type="button" onclick="addNote()">OK</button>
+                        <button type="button" >Cancel</button>
+                    </div>
+                </div>
+            </div>
+        <div id="notesList"></div>
     </body>
-    <h1>Notes</h1>
-    <div >
-        <input class="newinput" type="text" id="noteInput" placeholder="Add a new note...">
-        
-    </div>
-    <div id="notesList"></div>
-
-    <script>
-        function addNote() {
-            const input = document.getElementById('noteInput');
-            if (input.value.trim() === '') return;
-            
-            const note = document.createElement('div');
-            note.className = 'note';
-            note.innerHTML = `
-                <span>${input.value}</span>
-                <button class="delete-btn" onclick="this.parentElement.remove()">Delete</button>
-            `;
-            document.getElementById('notesList').appendChild(note);
-            input.value = '';
-            input.focus();
-        }
-        
-        document.getElementById('noteInput').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') addNote();
-        });
-    </script>
-</body>
 </html>

@@ -1,0 +1,94 @@
+@font-face {
+    font-family: 'MSSansSerif';
+    src: url('../fonts/MS_Sans_Serif_8pt.ttf') format('truetype');
+}
+
+body {
+    font-family: 'MSSansSerif';
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #009888;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-box {
+    background-color: #c0c0c0;
+    border: 2px solid;
+    border-color: #dfdfdf #000000 #000000 #dfdfdf;
+    padding: 4px;
+    width: 425px;
+    box-shadow: 1px 1px 0 #ffffff inset, -1px -1px 0 #808080 inset;
+}
+
+.login-box h2 {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    background: #000080;
+    color: white;
+    padding: 2px 4px;
+}
+
+.login-box label {
+    display: block;
+    margin: 3px 0 3px 0;
+    font-size: 12px;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 3px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    background-color: white;
+    font-size: 12px;
+}
+
+.button-group {
+    font-family: 'MSSansSerif';
+    width: 62px;
+    display: flex;
+    gap: 5px;
+    justify-content: flex-end;
+    float: right;
+    flex-direction: column; 
+    width: auto; 
+    margin-left: auto; 
+    align-self: flex-start;
+}
+
+.login-box button {
+    padding: 4px 12px;
+    min-width: 60px;
+    background-color: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #000000 #000000 #ffffff;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.login-box button:active {
+    border-color: #000000 #ffffff #ffffff #000000;
+}
+.inputs{
+    display: flex; 
+    gap: 30px; 
+    align-items: center; 
+    height: 24px;
+    padding: 5px;
+}
+.labels{
+    align-items: center; 
+    height: 24px; 
+    width: 62px; 
+    margin: 0px;
+}

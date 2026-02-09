@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css files/index.css">
+        <title>Hi</title>
+    </head>
+    <body>
+        <div id="menu txt"></div>
+        <script>
+            fetch("taskbar.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("menu").innerHTML = data;
+            });
+        </script>
+        <div class="login-container">
+            <div class="login-box">
+                <h2>Welcome to Winotes</h2>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <div style="width: 320px;">
+                        <div style="align-items: center; height: 24px; width: 320px; margin: 0px;">
+                            <label>Type a user name and a password to log on to Winotes</label>
+                        </div>
+                        <div>
+                            <div class="inputs">
+                                <label class="labels">User name:</label>
+                                <input type="text" style="max-width: 200px;" required>
+                            </div>
+                            <div class="inputs">
+                                <label class="labels">Password:</label>
+                                <input type="password" style="max-width: 200px;" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button type="button" onclick="window.location.href='notes.html'">OK</button>
+                        <button type="button" onclick="window.location.href='index.html'">Sign Up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

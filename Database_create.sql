@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS
+DROP DATABASE IF EXISTS notes_app;
 
 CREATE DATABASE notes_app
   CHARACTER SET utf8mb4
@@ -10,16 +10,14 @@ CREATE TABLE users (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
     email VARCHAR(255) NOT NULL UNIQUE,
-    password_hash VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE folders (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     user_id INT UNSIGNED NOT NULL,
-    name VARCHAR(100) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-
+    name VARCHAR(255) NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id)
       ON DELETE CASCADE
 );
@@ -30,75 +28,67 @@ CREATE TABLE notes (
     folder_id INT UNSIGNED NULL,
     title VARCHAR(255) NOT NULL,
     content TEXT NOT NULL,
-    is_pinned BOOLEAN DEFAULT FALSE,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-
     FOREIGN KEY (user_id) REFERENCES users(id)
       ON DELETE CASCADE,
     FOREIGN KEY (folder_id) REFERENCES folders(id)
       ON DELETE SET NULL
 );
 
-CREATE TABLE tags (
-    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    user_id INT UNSIGNED NOT NULL,
-    name VARCHAR(50) NOT NULL,
-
-    UNIQUE (user_id, name),
-    FOREIGN KEY (user_id) REFERENCES users(id)
-      ON DELETE CASCADE
-);
-
-CREATE TABLE note_tags (
+CREATE TABLE kanban (
     note_id INT UNSIGNED NOT NULL,
-    tag_id INT UNSIGNED NOT NULL,
-
-    PRIMARY KEY (note_id, tag_id),
+    uncategorized BOOLEAN DEFAULT TRUE,
+    todo BOOLEAN DEFAULT FALSE,
+    doing BOOLEAN DEFAULT FALSE,
+    done BOOLEAN DEFAULT FALSE,
     FOREIGN KEY (note_id) REFERENCES notes(id)
-      ON DELETE CASCADE,
-    FOREIGN KEY (tag_id) REFERENCES tags(id)
       ON DELETE CASCADE
 );
 
-CREATE TABLE kanban_boards (
-    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    user_id INT UNSIGNED NOT NULL,
-    name VARCHAR(100) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+INSERT INTO users (username, email, password) VALUES 
+('alice', 'alice@example.com', 'hash1'),
+('bob', 'bob@example.com', 'hash2'),
+('carol', 'carol@example.com', 'hash3'),
+('dave', 'dave@example.com', 'hash4'),
+('eve', 'eve@example.com', 'hash5'),
+('frank', 'frank@example.com', 'hash6'),
+('grace', 'grace@example.com', 'hash7'),
+('heidi', 'heidi@example.com', 'hash8'),
+('ivan', 'ivan@example.com', 'hash9'),
+('judy', 'judy@example.com', 'hash10');
 
-    FOREIGN KEY (user_id) REFERENCES users(id)
-      ON DELETE CASCADE
-)ENGINE=InnoDB;
+INSERT INTO notes (user_id, folder_id, title, content) VALUES
+(1, NULL, 'Grocery List', 'Buy milk, eggs, bread'),
+(2, NULL, 'Workout Plan', 'Monday: Chest, Tuesday: Back'),
+(3, NULL, 'Project Ideas', 'Build a chatbot for school'),
+(4, NULL, 'Meeting Notes', 'Discuss quarterly results'),
+(5, NULL, 'Travel Plans', 'Visit Japan in spring'),
+(6, NULL, 'Book List', 'Read 10 books this year'),
+(7, NULL, 'Recipe', 'Pasta with homemade sauce'),
+(8, NULL, 'Daily Journal', 'Today I learned SQL'),
+(9, NULL, 'Budget', 'Track monthly expenses'),
+(10, NULL, 'Learning Goals', 'Practice coding 2 hours/day');
 
-CREATE TABLE kanban_columns (
-    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    board_id INT UNSIGNED NOT NULL,
-    name VARCHAR(50) NOT NULL,
-    position INT NOT NULL,
+INSERT INTO kanban (note_id, uncategorized, todo, doing, done) VALUES
+(1, TRUE, FALSE, FALSE, FALSE),
+(2, TRUE, TRUE, FALSE, FALSE),
+(3, TRUE, TRUE, TRUE, FALSE),
+(4, TRUE, FALSE, TRUE, FALSE),
+(5, TRUE, FALSE, FALSE, TRUE),
+(6, TRUE, TRUE, FALSE, TRUE),
+(7, TRUE, FALSE, TRUE, TRUE),
+(8, TRUE, TRUE, TRUE, TRUE),
+(9, TRUE, FALSE, FALSE, FALSE),
+(10, TRUE, FALSE, TRUE, FALSE);
 
-    FOREIGN KEY (board_id) REFERENCES kanban_boards(id)
-      ON DELETE CASCADE
-);
+INSERT INTO folders (user_id, name) VALUES
+(1, 'Personal'),
+(2, 'Work'),
+(3, 'Projects'),
+(4, 'Notes'),
+(5, 'Travel');
 
-CREATE TABLE tasks (
-    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    column_id INT UNSIGNED NOT NULL,
-    user_id INT UNSIGNED NOT NULL,
-    title VARCHAR(255) NOT NULL,
-    description TEXT,
-    due_date DATE NULL,
-    position INT NOT NULL,
-    is_completed BOOLEAN DEFAULT FALSE,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-
-    FOREIGN KEY (column_id) REFERENCES kanban_columns(id)
-      ON DELETE CASCADE,
-    FOREIGN KEY (user_id) REFERENCES users(id)
-      ON DELETE CASCADE
-);
-
-CREATE INDEX idx_notes_user ON notes(user_id);
-CREATE INDEX idx_tasks_user ON tasks(user_id);
-CREATE INDEX idx_tasks_column ON tasks(column_id);
+UPDATE notes SET folder_id = 1 WHERE id IN (1, 6);
+UPDATE notes SET folder_id = 2 WHERE id IN (2, 4);
+UPDATE notes SET folder_id = 3 WHERE id IN (3, 7);
+UPDATE notes SET folder_id = 4 WHERE id IN (8);
+UPDATE notes SET folder_id = 5 WHERE id IN (5, 9, 10);

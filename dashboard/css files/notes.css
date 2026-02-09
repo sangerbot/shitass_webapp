@@ -1,52 +1,67 @@
+@font-face {
+    font-family: 'MSSansSerif';
+    src: url('../fonts/MS_Sans_Serif_8pt.ttf') format('truetype');
+}
+
 body {
-            font-family: Arial, sans-serif;
-            max-width: 100%;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #009888;
-        }
-        input {
-            width: 80%;
-            padding: 8px;
-            font-size: 14px;
-        }
-        button {
-            padding: 8px 15px;
-            cursor: pointer;
-        }
-        #notesList {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .note {
-            background: #f0f0f0;
-            padding: 10px;
-            border-radius: 4px;
-            display: flex;
-            flex-direction: column;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            flex: 0 1 calc(25% - 10px);
-            min-width: 150px;
-        }
-        .delete-btn {
-            background: #ff6b6b;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-            border-radius: 3px;
-            margin-top: 8px;
-            align-self: flex-start;
-        }
-        .newinput {
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            flex: 0 1 calc(10% - 10px);
-            max-width: 500px;
-            min-width: 150px;
-        }
+    font-family: 'MSSansSerif';
+    max-width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #009888;
+}
+input {
+    width: 80%;
+    padding: 8px;
+    font-size: 14px;
+}
+button {
+    padding: 8px 15px;
+    cursor: pointer;
+}
+#notesList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.note {
+    background: #f0f0f0;
+    padding: 10px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    flex: 0 1 calc(25% - 10px);
+    min-width: 150px;
+}
+.delete-btn {
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+    margin-top: 8px;
+    align-self: flex-start;
+}
+.newinput {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    flex: 0 1 calc(10% - 10px);
+    max-width: 500px;
+    min-width: 150px;
+}
+
+.notesbox {
+    background-color: #c0c0c0;
+    border: 2px solid;
+    border-color: #dfdfdf #000000 #000000 #dfdfdf;
+    padding: 4px;
+    width: 425px;
+    min-height: 116px;
+    box-shadow: 1px 1px 0 #ffffff inset, -1px -1px 0 #808080 inset;
+}

@@ -2,7 +2,14 @@
   --win95-light: #ffffff;
   --win95-darker: #000000;
 }
+@font-face {
+  font-family: 'MSSansSerif';
+  src: url('../fonts/MS_Sans_Serif_8pt.ttf') format('truetype');
+}
 
+body {
+  font-family: 'MSSansSerif';
+}
 html, body {
   margin: 0;
   padding: 0;
