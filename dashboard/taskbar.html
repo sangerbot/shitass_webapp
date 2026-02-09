@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css files/window.css">
+    </head>
+    <body>
+        <div class="taskbar">
+            <div class="start-btn btn">
+                <img src="https://win98icons.alexmeub.com/icons/png/windows-4.png"> Start
+            </div>
+            <div class="btn" onclick="window.location.href='notes.html'">Notes</div>
+            <div class="btn" onclick="window.location.href='taskbar.html'">taskbar</div>
+            <div class="btn right" onclick="window.location.href='index.html'">test page</div>
+            <div class="tray" id="txt"></div>
+
+            
+        </div>
+        <div >hi</div>
+        <script>
+            function startTime() {
+            const today = new Date();
+            let h = today.getHours();
+            let m = today.getMinutes();
+            h = checkTime(h);
+            m = checkTime(m);
+            document.getElementById('txt').innerHTML =  h + ":" + m;
+            setTimeout(startTime, 1000);
+            }
+
+            function checkTime(i) {
+                if (i < 10) {i = "0" + i}  // add zero in front of numbers < 10
+                return i;
+            }
+            startTime();
+        </script>
+     </body>   
+</html>

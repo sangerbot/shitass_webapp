@@ -1,0 +1,85 @@
+:root {
+  --win95-light: #ffffff;
+  --win95-darker: #000000;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.taskbar {
+  padding: 2px;
+  box-shadow: inset 1px 0 #fff;
+  display: block;
+  background-color: silver;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-top: 1px solid #f4f4f4;
+  border-bottom: 1px solid #4e4e4e;
+  position: fixed;
+  z-index: 99999;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Bevel helper */
+.btn {
+  /*margin-left: 2px;
+  margin-bottom: 2px;
+  */
+  vertical-align: middle;
+  display: inline-block;
+  padding: 2px 6px 3px;
+  background-color: silver;
+  border-top: 1px solid #fff;
+  border-left: 1px solid #fff;
+  border-right: 1px solid gray;
+  border-bottom: 1px solid gray;
+  box-shadow: inset 1px 1px #dfdfdf,1px 0 #000,0 1px #000,1px 1px #000;
+  min-width: 59px;
+  color: #000;
+}
+
+/* Pressed look */
+.btn.active {
+  border-top: 1px solid var(--win95-darker);
+  border-left: 1px solid var(--win95-darker);
+  border-bottom: 1px solid var(--win95-light);
+  border-right: 1px solid var(--win95-light);
+}
+
+.start-btn {
+  font-weight: bold;
+  margin-right: 6px;
+}
+
+.task-btn {
+  margin-right: 4px;
+  min-width: 120px;
+}
+
+/* Right aligned group */
+.right {
+  margin-left: auto;
+}
+
+.tray {
+  vertical-align: middle;
+  display: inline-block;
+  padding: 2px 6px 3px;
+  background-color: silver;
+  border-top: 2px solid var(--win95-darker);
+  border-left: 2px solid var(--win95-darker);
+  border-bottom: 2px solid var(--win95-light);
+  border-right: 2px solid var(--win95-light);
+  min-width: 59px;
+  padding: 2px 6px;
+  min-width: 59px;
+  float: right;
+}
