@@ -16,11 +16,11 @@ require 'php/auth.php';
                 <img src="https://win98icons.alexmeub.com/icons/png/windows-4.png"> Logout   
             </div>
             <div class="btn" onclick="window.location.href='notes.php'">Notes</div>
-            <div class="btn" onclick="window.location.href='kanban.html'">kanban</div>
-            <div class="btn" onclick="window.location.href='folders.php'">Folders</div>
             <?php if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1): ?>
-                <div class="btn" onclick="window.location.href='kanbanadmin.php'">Kanban manager</div>
+                <div class="btn" onclick="window.location.href='kanban.php'">kanban</div>
             <?php endif; ?>
+            <div class="btn right" onclick="window.location.href='sub.php'">Subscribe!</div>
+            
             <div class="tray" id="txt">04:04 AM</div>
         </div>
      </body>   

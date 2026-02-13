@@ -72,11 +72,13 @@ $result = $stmt->get_result();
                 document.getElementById("menu").innerHTML = data;
             });
         </script>
-        <div class="login-box notesbox" style="margin-bottom: 20px;">
+        <div class="login-box notesbox" style="margin-left: 10px; margin-bottom: 20px;">
             <form method="POST">
                 <input type="hidden" name="action" value="create">
                 <div>
-                    <h2>New Note - <input name="title" type="text" placeholder="Enter note title..." style=" font-family: 'MSSansSerif'; margin: 0; color: white; width: 300px; border: none; background: transparent; font-size: inherit;"></h2>
+                    <h2 style="background-color: <?= (isset($_SESSION['is_subscribed']) && $_SESSION['is_subscribed']) ? 'blue' : 'pink' ?>;">
+                        New Note - <input name="title" type="text" placeholder="Enter note title..." style="font-family: 'MSSansSerif'; margin: 0; color: white; width: 300px; border: none; background: transparent; font-size: inherit;">
+                    </h2>
                 </div>
                 <div style="display: flex; align-items: center; gap: 10px;">
                     <div style="width: 320px;">
@@ -95,7 +97,7 @@ $result = $stmt->get_result();
         </div>
 
         <?php while ($note = $result->fetch_assoc()): ?>
-            <div class="login-box notesbox">
+            <div style="margin:10px" class="login-box notesbox">
                 <form method="POST">
                 <input type="hidden" name="action" value="update">
                 <input type="hidden" name="note_id" value="<?= $note['id'] ?>">

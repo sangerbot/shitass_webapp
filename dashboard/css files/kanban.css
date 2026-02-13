@@ -2,10 +2,11 @@
     background-color: #c0c0c0;
     border: 2px solid;
     border-color: #dfdfdf #000000 #000000 #dfdfdf;
-    padding: 4px;
-    width: 425px;
-    min-height: 116px;
     box-shadow: 1px 1px 0 #ffffff inset, -1px -1px 0 #808080 inset;
+    padding: 15px;
+    width: 400px;
+    min-height: 500px;
+    border-radius: 8px;
 }
 
 .kanban-container h2 {
@@ -15,7 +16,9 @@
     color: #a7a7a7;
     padding: 2px 4px;
 }
-
+.board{
+    display: flex;
+}
 input {
     width: 80%;
     padding: 8px;
