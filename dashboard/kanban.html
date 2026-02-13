@@ -4,6 +4,7 @@
         <link rel="stylesheet" href="vcss files/window.css">
         <link rel="stylesheet" href="css files/notes.css">
         <link rel="stylesheet" href="css files/index.css">
+        <link rel="stylesheet" href="css files/kanban.css">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Kanban Board</title>
@@ -11,11 +12,31 @@
     <body>
         <div id="menu" style="padding: 20px;"></div>
         <script>
-            fetch("taskbar.html")
+            fetch("taskbar.php")
             .then(response => response.text())
             .then(data => {
                 document.getElementById("menu").innerHTML = data;
             });
         </script>
+        <div class="kanban-container">
+            <div>
+                <h2>TO DO</h2>
+            </div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <div style="width: 320px;">
+                        <div>
+                            <div class="inputs">
+                                
+                                <textarea placeholder="Enter note content..." style="width: 100%; min-height: 57px; max-height: 400px; resize: vertical; font-family: inherit;"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <button type="button">OK</button>
+                        <button type="button">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

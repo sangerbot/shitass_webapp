@@ -1,0 +1,50 @@
+.kanban-container {
+    background-color: #c0c0c0;
+    border: 2px solid;
+    border-color: #dfdfdf #000000 #000000 #dfdfdf;
+    padding: 4px;
+    width: 425px;
+    min-height: 116px;
+    box-shadow: 1px 1px 0 #ffffff inset, -1px -1px 0 #808080 inset;
+}
+
+.kanban-container h2 {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    background: #808080;
+    color: #a7a7a7;
+    padding: 2px 4px;
+}
+
+input {
+    width: 80%;
+    padding: 8px;
+    font-size: 14px;
+}
+
+.button-group {
+    font-family: 'MSSansSerif';
+    width: 62px;
+    display: flex;
+    gap: 5px;
+    justify-content: flex-end;
+    float: right;
+    flex-direction: column; 
+    width: auto; 
+    margin-left: auto; 
+    align-self: flex-start;
+}
+
+.kanban-container button {
+    padding: 4px 12px;
+    min-width: 60px;
+    background-color: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #000000 #000000 #ffffff;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.kanban-container button:active {
+    border-color: #000000 #ffffff #ffffff #000000;
+}

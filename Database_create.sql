@@ -11,8 +11,9 @@ CREATE TABLE users (
     username VARCHAR(50) NOT NULL UNIQUE,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
+    admin Boolean default FALSE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+); 
 
 CREATE TABLE folders (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -44,17 +45,17 @@ CREATE TABLE kanban (
       ON DELETE CASCADE
 );
 
-INSERT INTO users (username, email, password) VALUES 
-('alice', 'alice@example.com', 'hash1'),
-('bob', 'bob@example.com', 'hash2'),
-('carol', 'carol@example.com', 'hash3'),
-('dave', 'dave@example.com', 'hash4'),
-('eve', 'eve@example.com', 'hash5'),
-('frank', 'frank@example.com', 'hash6'),
-('grace', 'grace@example.com', 'hash7'),
-('heidi', 'heidi@example.com', 'hash8'),
-('ivan', 'ivan@example.com', 'hash9'),
-('judy', 'judy@example.com', 'hash10');
+INSERT INTO users (username, email, password, admin) VALUES 
+('alice', 'alice@example.com', 'hash1', TRUE),
+('bob', 'bob@example.com', 'hash2', FALSE),
+('carol', 'carol@example.com', 'hash3', FALSE),
+('dave', 'dave@example.com', 'hash4', FALSE),
+('eve', 'eve@example.com', 'hash5', FALSE),
+('frank', 'frank@example.com', 'hash6', FALSE),
+('grace', 'grace@example.com', 'hash7', FALSE),
+('heidi', 'heidi@example.com', 'hash8', FALSE),
+('ivan', 'ivan@example.com', 'hash9', TRUE),
+('judy', 'judy@example.com', 'hash10', TRUE);
 
 INSERT INTO notes (user_id, folder_id, title, content) VALUES
 (1, NULL, 'Grocery List', 'Buy milk, eggs, bread'),

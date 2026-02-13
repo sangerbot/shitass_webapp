@@ -4,7 +4,7 @@
 }
 @font-face {
   font-family: 'MSSansSerif';
-  src: url('../fonts/MS_Sans_Serif_8pt.ttf') format('truetype');
+  src: url('dashboard/fonts/MS_Sans_Serif_8pt.ttf') format('truetype');
 }
 
 body {
@@ -14,7 +14,7 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .taskbar {
@@ -77,8 +77,8 @@ html, body {
 }
 
 .tray {
-  vertical-align: middle;
-  display: inline-block;
+  /*vertical-align: middle;
+  display: inline-block;*/
   padding: 2px 6px 3px;
   background-color: silver;
   border-top: 2px solid var(--win95-darker);

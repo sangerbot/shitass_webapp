@@ -29,11 +29,17 @@ body {
 }
 
 .login-box h2 {
+    font-family: 'MSSansSerif';
     margin: 0 0 10px 0;
     font-size: 14px;
     background: #000080;
     color: white;
     padding: 2px 4px;
+}
+input {
+    font-family: 'MSSansSerif';
+    width: 80%;
+    font-size: 14px;
 }
 
 .login-box label {

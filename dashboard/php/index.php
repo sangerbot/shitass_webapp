@@ -17,22 +17,26 @@ if ($conn->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"] ?? "";
     $username = $_POST["username"] ?? "";
-    $newpassword = $_POST["password"] ?? "";
+    $newpassword = $_POST["password"] ?? ""; // current best Argon2 
+
+    if ($newpassword !== "") {
+    $hashpassword = password_hash($newpassword, PASSWORD_DEFAULT);
+    }
 
     // Validate inputs
-    if (empty($email) || empty($username) || empty($newpassword)) {
+    if (empty($email) || empty($username) || empty($hashpassword)) {
         echo "All fields are required.";
         exit;
     }
 
     // Prepare and bind
     $stmt = $conn->prepare("INSERT INTO users (email, username, password) VALUES (?, ?, ?)"); // ?,?,? are undefined variables
-    $stmt->bind_param("sss", $email, $username, $newpassword); // defines the variables as strings
+    $stmt->bind_param("sss", $email, $username, $hashpassword); // defines the variables as strings
 
     // Execute
     if ($stmt->execute()) {
         echo "User registered successfully.";
-        header("Location: ../notes.html");
+        header("Location: ../login.html");
     } else {
         echo "Error: " . $stmt->error;
     }

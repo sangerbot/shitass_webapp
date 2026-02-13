@@ -10,11 +10,7 @@ body {
     padding: 20px;
     background-color: #009888;
 }
-input {
-    width: 80%;
-    padding: 8px;
-    font-size: 14px;
-}
+
 button {
     padding: 8px 15px;
     cursor: pointer;
